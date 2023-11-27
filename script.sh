@@ -1,13 +1,10 @@
 #!/bin/bash
 
-
 RED="31"
 GREEN="32"
 BOLDGREEN="\e[1;${GREEN}m"
 ITALICRED="\e[3;${RED}m"
 ENDCOLOR="\e[0m"
-
-
 
 if [ "$1" = "gui" ]; then
   # Script is running with a GUI argument (icon)
@@ -93,6 +90,11 @@ echo "Writing new smb.conf file..."
 sudo tee /etc/samba/smb.conf > /dev/null <<EOF
 [global]
 netbios name = steamdeck
+lanman auth = no
+client lanman auth = no
+wins support = yes
+local master = yes
+preferred master = yes
 
 [steamapps]
 comment = Steam apps directory
